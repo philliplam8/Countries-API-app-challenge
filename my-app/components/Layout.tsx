@@ -9,7 +9,7 @@ export default function Layout({ children }: any) {
     <div>
       <Nav />
       <main
-        className={`px-4 ${
+        className={`md:px-20 px-4 ${
           darkMode ? "bg-very-dark-blue-bg" : "bg-very-light-gray"
         }`}
       >

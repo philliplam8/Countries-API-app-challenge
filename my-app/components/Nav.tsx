@@ -12,23 +12,23 @@ export default function Nav() {
   };
 
   return (
-    <nav
-      className={`flex justify-between items-center py-8 shadow-md ${
-        darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm"
-      }`}
-    >
-      <Link href={"/"}>
-        <p className="mx-5 font-extrabold text-sm">Where in the world?</p>
-      </Link>
-      <ul className="mx-5">
-        <button
-          onClick={darkModeHandler}
-          className="w-full flex flex-row items-center align gap-2"
-        >
-          {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
-          <span className="font-bold text-sm">Dark Mode</span>
-        </button>
-      </ul>
-    </nav>
+      <nav
+        className={`py-8 md:px-20 flex justify-between items-center ${
+          darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm"
+        }`}
+      >
+        <Link href={"/"}>
+          <p className="mx-5 font-extrabold text-sm">Where in the world?</p>
+        </Link>
+        <ul className="mx-5">
+          <button
+            onClick={darkModeHandler}
+            className="w-full flex flex-row items-center align gap-2"
+          >
+            {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
+            <span className="font-bold text-sm">Dark Mode</span>
+          </button>
+        </ul>
+      </nav>
   );
 }
