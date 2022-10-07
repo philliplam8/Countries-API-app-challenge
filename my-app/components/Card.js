@@ -1,14 +1,20 @@
 import { useContext } from "react";
 import { DarkModeContext } from "../DarkModeContext";
+import { useRouter } from "next/router";
 
 export default function Card(props) {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const route = useRouter();
+
+  const cardClickHandler = () => {
+    route.push("/details");
+  };
 
   return (
     <div
-      className={`h-[350px] w-[300px] rounded-lg shadow-md ${
-        darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm"
-      }`}
+      className={`h-[350px] w-[300px] rounded-lg shadow-md 
+      ${darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm bg-white"}`}
+      onClick={cardClickHandler}
     >
       <div className="card-image h-[150px] w-[150px]"></div>
 
