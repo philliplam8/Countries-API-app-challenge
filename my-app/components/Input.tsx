@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { DarkModeContext } from "../DarkModeContext";
-import { HiOutlineSearch } from "react-icons/Hi";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function Input() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
@@ -11,7 +11,7 @@ export default function Input() {
         darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm bg-white"
       }`}
     >
-      <HiOutlineSearch className="text-gray-400" />
+      <SearchIcon className="text-gray-400" />
       <input
         type="text"
         id="search"

@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { DarkModeContext } from "../DarkModeContext";
 import Link from "next/link";
-import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 export default function Nav() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
@@ -24,7 +25,7 @@ export default function Nav() {
           onClick={darkModeHandler}
           className="w-full flex flex-row items-center align gap-2"
         >
-          {darkMode ? <MdDarkMode /> : <MdOutlineDarkMode />}
+          {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
           <span className="font-bold text-sm">Dark Mode</span>
         </button>
       </ul>
