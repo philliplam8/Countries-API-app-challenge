@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../DarkModeContext.tsx";
 import { useRouter } from "next/router";
 
 export default function Card(props) {
@@ -16,22 +16,24 @@ export default function Card(props) {
       ${darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm bg-white"}`}
       onClick={cardClickHandler}
     >
-      <div className="card-image h-[150px] w-[150px]"></div>
+      <div className="card-image">
+        <img src={props.flagImage} />
+      </div>
 
       <div className="card-details m-6">
-        <h2 className="font-extrabold my-4 text-lg">Germany</h2>
+        <h2 className="font-extrabold my-4 text-lg">{props.countryName}</h2>
         <div className="card-country-details flex flex-col gap-1 text-sm">
           <div className="flex gap-1">
             <h3 className="font-semibold">Population:</h3>
-            <p>{props.population}81,000,000</p>
+            <p>{props.population}</p>
           </div>
           <div className="flex gap-1">
             <h3 className="font-semibold">Region:</h3>
-            <p>{props.region}Europe</p>
+            <p>{props.region}</p>
           </div>
           <div className="flex gap-1">
             <h3 className="font-semibold">Capital: </h3>
-            <p>{props.capital}Berlin</p>
+            <p>{props.capital}</p>
           </div>
         </div>
       </div>
