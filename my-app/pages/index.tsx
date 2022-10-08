@@ -7,7 +7,6 @@ import Card from "../components/Card";
 import Input from "../components/Input";
 import Dropdown from "../components/Dropdown";
 
-
 // TODO Typescript
 const parseCountries = (data: any) => {
   let parsedCountries: {
@@ -24,7 +23,7 @@ const parseCountries = (data: any) => {
 
     parsedCountries[i] = {
       key: country.name.common,
-      flagImage: country.flags.png,
+      flagImage: country.flags.svg,
       countryName: country.name.common,
       population: country.population,
       region: country.region,
@@ -37,8 +36,6 @@ const parseCountries = (data: any) => {
 
 const Home: NextPage = () => {
   const [countries, setCountries] = useContext(CountriesContext);
-
-  const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -50,14 +47,13 @@ const Home: NextPage = () => {
         let parsedCountries = parseCountries(data);
         console.log(parsedCountries);
         setCountries(parsedCountries);
-        setData(data);
         setLoading(false);
         // console.log(data);
       });
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
+  if (!countries) return <p>No profile data</p>;
 
   return (
     <div>
@@ -77,7 +73,6 @@ const Home: NextPage = () => {
         </div>
 
         <div className="py-5 flex flex-row flex-wrap justify-center align-items gap-10">
-
           {/* <CardGroup /> */}
           {countries.map(
             (country: {
