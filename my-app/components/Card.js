@@ -7,12 +7,12 @@ export default function Card(props) {
   const route = useRouter();
 
   const cardClickHandler = () => {
-    route.push("/details");
+    route.push(`/details?country=${props.countryName}`);
   };
 
   return (
     <div
-      className={`h-[350px] w-[300px] rounded-lg shadow-md 
+      className={`h-[350px] w-[300px] rounded-lg shadow-md cursor-pointer
       ${darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm bg-white"}`}
       onClick={cardClickHandler}
     >
