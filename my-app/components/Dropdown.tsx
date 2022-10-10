@@ -8,7 +8,7 @@ export default function Dropdown() {
 
   return (
     <div
-      className={`h-[60px] w-[200px] px-7 flex align-items shadow-md rounded-lg
+      className={`h-[60px] w-[200px] px-7 flex align-items shadow-md rounded-lg cursor-pointer
         ${
           darkMode
             ? "text-white bg-dark-blue"
@@ -18,7 +18,7 @@ export default function Dropdown() {
       <select
         name="filter"
         id="filter-region"
-        className={`w-full
+        className={`w-full cursor-pointer
         ${darkMode ? "bg-dark-blue" : "bg-white"}`}
       >
         <option value="">Filter by Region</option>
