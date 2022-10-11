@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { DarkModeContext } from "../DarkModeContext";
 import { useRouter } from "next/router";
+import Field from "../components/Field";
+import { Country } from "../types/types";
 
-export default function Card(props) {
+export default function Card(props: Country) {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const route = useRouter();
 
@@ -25,18 +27,9 @@ export default function Card(props) {
       <div className="card-details m-6">
         <h2 className="font-extrabold my-4 text-lg">{props.countryName}</h2>
         <div className="card-country-details flex flex-col gap-1 text-sm">
-          <div className="flex gap-1">
-            <h3 className="font-semibold">Population:</h3>
-            <p>{props.population}</p>
-          </div>
-          <div className="flex gap-1">
-            <h3 className="font-semibold">Region:</h3>
-            <p>{props.region}</p>
-          </div>
-          <div className="flex gap-1">
-            <h3 className="font-semibold">Capital: </h3>
-            <p>{props.capital}</p>
-          </div>
+          <Field fieldName="Population:" fieldValue={props.population} />
+          <Field fieldName="Region:" fieldValue={props.region} />
+          <Field fieldName="Capital:" fieldValue={props.capital} />
         </div>
       </div>
     </div>
