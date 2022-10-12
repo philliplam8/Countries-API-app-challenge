@@ -21,7 +21,7 @@ const Details: NextPage = () => {
 
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [countryData, setCountryData] = useState<Country>({}); // potential for lazy
+  const [countryData, setCountryData] = useState<Country | {}>({}); // potential for skeleton loading
 
   const backButtonHandler = () => {
     route.push(`/`);
