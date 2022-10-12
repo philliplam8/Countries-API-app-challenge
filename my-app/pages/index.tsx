@@ -2,53 +2,51 @@ import { useContext, useState, useEffect } from "react";
 import { CountriesContext } from "../CountriesContext";
 import type { NextPage } from "next";
 import Head from "next/head";
-import CardGroup from "../components/CardGroup";
-import Card from "../components/Card";
 import Input from "../components/Input";
 import Dropdown from "../components/Dropdown";
+import CardGroup from "../components/CardGroup";
+
+const ALL_COUNTRIES_API = "https://restcountries.com/v3.1/all";
 
 // TODO Typescript
-const parseCountries = (data: any) => {
-  let parsedCountries: {
-    key: String;
-    flagImage: String;
-    countryName: String;
-    population: Number;
-    region: String;
-    capital: String;
-  }[] = [];
+/**
+ *
+ * @param data
+ * @returns
+ */
+const parseCountries = (data: [any]) => {
+  let parsedCountries = [];
 
   for (let i = 0; i < data.length; i++) {
     const country = data[i];
-
     parsedCountries[i] = {
       key: country.name.common,
       flagImage: country.flags.svg,
       countryName: country.name.common,
-      population: country.population,
+      population: country.population.toLocaleString(),
       region: country.region,
       capital: country.capital,
     };
   }
 
+  console.log({ parseCountries });
   return parsedCountries;
 };
 
 const Home: NextPage = () => {
-  const [countries, setCountries] = useContext(CountriesContext);
   const [isLoading, setLoading] = useState(false);
+  const [countries, setCountries] = useContext(CountriesContext);
 
   useEffect(() => {
     setLoading(true);
 
-    fetch("https://restcountries.com/v3.1/all")
+    fetch(ALL_COUNTRIES_API)
       .then((res) => res.json())
       .then((data) => {
         let parsedCountries = parseCountries(data);
-        console.log(parsedCountries);
+        // console.log(parsedCountries);
         setCountries(parsedCountries);
         setLoading(false);
-        // console.log(data);
       });
   }, []);
 
@@ -72,30 +70,7 @@ const Home: NextPage = () => {
           <Dropdown />
         </div>
 
-        <div className="py-5 flex flex-row flex-wrap justify-center align-items gap-10">
-          {/* <CardGroup /> */}
-          {countries.map(
-            (country: {
-              key: String;
-              flagImage: String;
-              countryName: String;
-              population: Number;
-              region: String;
-              capital: String;
-            }) => {
-              return (
-                <Card
-                  key={country.key}
-                  flagImage={country.flagImage}
-                  countryName={country.countryName}
-                  population={country.population}
-                  region={country.region}
-                  capital={country.capital}
-                />
-              );
-            }
-          )}
-        </div>
+        <CardGroup />
       </div>
     </div>
   );
