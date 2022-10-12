@@ -76,32 +76,46 @@ const Details: NextPage = () => {
             <div id="country-details-main" className="flex flex-col gap-2">
               <Field
                 fieldName="Native Name:"
-                fieldValue={countryData.nativeName}
+                fieldValue={
+                  countryData.nativeName ? countryData.nativeName : ""
+                }
               />
               <Field
                 fieldName="Population:"
-                fieldValue={countryData.population}
+                fieldValue={
+                  countryData.population ? countryData.population : ""
+                }
               />
-              <Field fieldName="Region:" fieldValue={countryData.region} />
+              <Field
+                fieldName="Region:"
+                fieldValue={countryData.region ? countryData.region : ""}
+              />
               <Field
                 fieldName="Sub Region:"
-                fieldValue={countryData.subRegion}
+                fieldValue={countryData.subRegion ? countryData.subRegion : ""}
               />
-              <Field fieldName="Capital:" fieldValue={countryData.capital} />
+              <Field
+                fieldName="Capital:"
+                fieldValue={countryData.capital ? countryData.capital : ""}
+              />
             </div>
 
             <div id="column2" className="flex flex-col gap-2">
               <Field
                 fieldName="Top Level Domain:"
-                fieldValue={countryData.topLevelDomain}
+                fieldValue={
+                  countryData.topLevelDomain ? countryData.topLevelDomain : ""
+                }
               />
               <Field
                 fieldName="Currencies:"
-                fieldValue={countryData.currencies}
+                fieldValue={
+                  countryData.currencies ? countryData.currencies : ""
+                }
               />
               <Field
                 fieldName="Languages:"
-                fieldValue={countryData.languages}
+                fieldValue={countryData.languages ? countryData.languages : ""}
               />
             </div>
           </div>
