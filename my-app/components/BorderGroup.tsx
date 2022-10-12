@@ -39,7 +39,7 @@ export default function BorderGroup(props: { borders: string[] | undefined }) {
         {/* {getCountryNameFromCode(props.borders)} */}
         {myborders &&
           myborders.map((border) => {
-            return <Border countryName={border} />;
+            return <Border key={border} countryName={border} />;
           })}
       </div>
     </div>
