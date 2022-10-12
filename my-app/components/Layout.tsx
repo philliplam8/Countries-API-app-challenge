@@ -8,7 +8,7 @@ export default function Layout({ children }: any) {
   return (
     <div className={darkMode ? "bg-very-dark-blue-bg" : "bg-very-light-gray"}>
       <Nav />
-      <main className="h-full md:px-20 px-4">{children}</main>
+      <main className="h-full lg:px-20 px-4">{children}</main>
     </div>
   );
 }
