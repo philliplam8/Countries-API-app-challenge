@@ -5,7 +5,7 @@ import { CountryName } from "../types/types";
 
 export default function Border(props: CountryName): JSX.Element {
   const route = useRouter();
-  const { darkMode, setDarkMode } = useContext(DarkModeContext);
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
   const borderClickHandler = () => {
     console.log("Clicked on border country");

@@ -13,8 +13,8 @@ export default function Nav() {
 
   return (
     <nav
-      className={`py-8 md:px-20 flex justify-between items-center ${
-        darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm"
+      className={`py-8 md:px-20 flex justify-between items-center shadow-md ${
+        darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm bg-white"
       }`}
     >
       <Link href={"/"}>
