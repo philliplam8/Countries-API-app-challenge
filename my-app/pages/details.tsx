@@ -6,6 +6,7 @@ import {
   getNativeCountryName,
   getCurrencies,
   parseCountry,
+  initialCountry,
 } from "../services/countries.service";
 import { getKeysFromObject, formatKeyValuesFromObject } from "../utils/helpers";
 import BorderGroup from "../components/BorderGroup";
@@ -21,7 +22,7 @@ const Details: NextPage = () => {
 
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [countryData, setCountryData] = useState<Country | {}>({}); // potential for skeleton loading
+  const [countryData, setCountryData] = useState<Country>(initialCountry); // potential for skeleton loading
 
   const backButtonHandler = () => {
     route.push(`/`);

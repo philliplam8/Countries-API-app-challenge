@@ -68,6 +68,20 @@ export function parseCountries(data: [any]) {
 
 //TODO fix param type
 
+export const initialCountry = {
+  flagImage: "",
+  countryName: "",
+  nativeName: "",
+  population: "",
+  region: "",
+  subRegion: "",
+  capital: "",
+  topLevelDomain: "",
+  currencies: "",
+  languages: "",
+  borders: [],
+};
+
 export function parseCountry(country: any) {
   const EMPTY_VALUE = "";
   const formatProperty = (key: string, formatedProperty: string) => {
