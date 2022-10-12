@@ -4,7 +4,8 @@ import Card from "./Card";
 import { Country } from "../types/types";
 
 export default function CardGroup() {
-  const [countries, setCountries] = useContext(CountriesContext);
+  const { countriesValue } = useContext(CountriesContext);
+  const [countries, setCountries] = countriesValue;
 
   return (
     <div className="py-5 flex flex-row flex-wrap justify-center align-items gap-10">

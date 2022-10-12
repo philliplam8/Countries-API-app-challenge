@@ -32,9 +32,10 @@ export const CountriesContext = createContext();
 
 export const CountriesProvider = (props) => {
   const [countries, setCountries] = useState([]);
+  const [keyword, setKeyword] = useState("");
 
   return (
-    <CountriesContext.Provider value={[countries, setCountries]}>
+    <CountriesContext.Provider value={{ countriesValue: [countries, setCountries], keywordValue: [keyword, setKeyword] }}>
       {props.children}
     </CountriesContext.Provider>
   );

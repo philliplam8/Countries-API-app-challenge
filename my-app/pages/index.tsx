@@ -4,26 +4,29 @@ import { CountriesContext } from "../CountriesContext";
 import { parseCountries } from "../services/countries.service";
 import Head from "next/head";
 import Input from "../components/Input";
-import Dropdown from "../components/Dropdown";
+import Dropdown from "../components/RegionDropdown";
 import CardGroup from "../components/CardGroup";
 
 const ALL_COUNTRIES_API = "https://restcountries.com/v3.1/all";
 
 const Home: NextPage = () => {
   const [isLoading, setLoading] = useState(false);
-  const [countries, setCountries] = useContext(CountriesContext);
+  const { countriesValue, keywordValue } = useContext(CountriesContext);
+  const [countries, setCountries] = countriesValue;
+  const [keyword, setKeyword] = keywordValue;
 
   useEffect(() => {
-    setLoading(true);
-
-    fetch(ALL_COUNTRIES_API)
-      .then((res) => res.json())
-      .then((data) => {
-        let parsedCountries = parseCountries(data);
-        setCountries(parsedCountries);
-        setLoading(false);
-      });
-  }, []);
+    if (keyword === "") {
+      setLoading(true);
+      fetch(ALL_COUNTRIES_API)
+        .then((res) => res.json())
+        .then((data) => {
+          let parsedCountries = parseCountries(data);
+          setCountries(parsedCountries);
+          setLoading(false);
+        });
+    }
+  }, [keyword]);
 
   if (isLoading) return <p>Loading...</p>;
   if (!countries) return <p>No profile data</p>;
