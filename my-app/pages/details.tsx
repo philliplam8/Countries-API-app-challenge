@@ -11,28 +11,12 @@ const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
 
 function getAllKeys(myObj: object): string {
   let keys: string[] = Object.keys(myObj);
-  let keysString: string = "";
-
-  for (let i = 0; i < keys.length; i++) {
-    keysString += keys[i];
-    if (i !== keys.length - 1) {
-      keysString += ", ";
-    }
-  }
-  return keysString;
+  return keys.join(", ");
 }
 
 function getAllKeyValues(myObj: object): string {
   let values: string[] = Object.values(myObj);
-  let valuesString: string = "";
-
-  for (let i = 0; i < values.length; i++) {
-    valuesString += values[i];
-    if (i !== values.length - 1) {
-      valuesString += ", ";
-    }
-  }
-  return valuesString;
+  return values.join(", ");
 }
 
 function getCommonCountryNativeName(nativeNameObject: object): string {
@@ -45,7 +29,8 @@ function getCommonCountryNativeName(nativeNameObject: object): string {
 const Details: NextPage = () => {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [countryData, setCountryData] = useState<Country | {}>({}); // potential for lazy
+
+  const [countryData, setCountryData] = useState<Country>({}); // potential for lazy
 
   const route = useRouter();
   const country = route.query["country"];
@@ -144,12 +129,9 @@ const Details: NextPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-row gap-4 items-center">
-            <h2 className="my-4 font-semibold text-lg">Border Countries:</h2>
-            {/* Border Country Buttons here... */}
-            {/* TODO */}
-            <BorderGroup borders={countryData.borders} />
-          </div>
+          {/* Border Country Buttons here... */}
+          {/* TODO */}
+          <BorderGroup borders={countryData.borders} />
         </div>
       </div>
     </div>
