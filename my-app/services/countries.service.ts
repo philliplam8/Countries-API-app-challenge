@@ -1,8 +1,27 @@
 import { useContext, useState } from "react";
 import { CountriesContext } from "../CountriesContext";
+import { Country } from "../types/types";
+import { formatKeyValuesFromObject } from "../utils/helpers";
 
 const ALL_COUNTRIES_API = "https://restcountries.com/v3.1/all";
 const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
+
+export function getNativeCountryName(nativeNameObject: object): string {
+  const length: number = Object.keys(nativeNameObject).length;
+  const commonNativeName: string =
+    Object.values(nativeNameObject)[length - 1].common;
+  return commonNativeName;
+}
+
+export function getCurrencies(currenciesObject: object): string {
+  // Parse currency name and the symbol
+  let currenciesArray: string[] = Object.values(currenciesObject).map(
+    (currency) => `${currency.name} (${currency.symbol})`
+  );
+  // Format currencies into a string
+  let stringifiedCurrencies: string = currenciesArray.join(", ");
+  return stringifiedCurrencies;
+}
 
 // TODO Typescript
 /**
@@ -47,9 +66,36 @@ export function parseCountries(data: [any]) {
 //   getCountriesArrayFromCountriesAPI(`${COUNTRY_NAME_API}${keyword}`);
 // }
 
-export function getCommonCountryNativeName(nativeNameObject: object): string {
-  const length: number = Object.keys(nativeNameObject).length;
-  const commonNativeName: string =
-    Object.values(nativeNameObject)[length - 1].common;
-  return commonNativeName;
+//TODO fix param type
+
+export function parseCountry(country: any) {
+  const EMPTY_VALUE = "";
+  const formatProperty = (key: string, formatedProperty: string) => {
+    return key in country ? formatedProperty : EMPTY_VALUE;
+  };
+
+  let parsedCountry = {
+    flagImage: formatProperty("flags", country.flags.svg),
+    countryName: formatProperty("name", country.name.common),
+    nativeName: formatProperty(
+      "name",
+      getNativeCountryName(country.name.nativeName)
+    ),
+    population: formatProperty(
+      "population",
+      country.population.toLocaleString()
+    ),
+    region: formatProperty("region", country.region),
+    subRegion: formatProperty("subregion", country.subregion),
+    capital: formatProperty("capital", country.capital),
+    topLevelDomain: formatProperty("tld", country.tld[0]),
+    currencies: formatProperty("currencies", getCurrencies(country.currencies)),
+    languages: formatProperty(
+      "languages",
+      formatKeyValuesFromObject(country.languages)
+    ),
+    borders: "borders" in country ? country.borders : [],
+  };
+
+  return parsedCountry;
 }

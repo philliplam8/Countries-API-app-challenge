@@ -2,8 +2,12 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { DarkModeContext } from "../DarkModeContext";
-import { getCommonCountryNativeName } from "../services/countries.service";
-import { getAllKeys, getAllKeyValues } from "../utils/helpers";
+import {
+  getNativeCountryName,
+  getCurrencies,
+  parseCountry,
+} from "../services/countries.service";
+import { getKeysFromObject, formatKeyValuesFromObject } from "../utils/helpers";
 import BorderGroup from "../components/BorderGroup";
 import Field from "../components/Field";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
@@ -31,23 +35,8 @@ const Details: NextPage = () => {
         .then((res) => res.json())
         .then((data) => {
           setLoading(false);
-
           const countryObject = data[0];
-          setCountryData({
-            flagImage: countryObject.flags.svg,
-            countryName: countryObject.name.common,
-            nativeName: getCommonCountryNativeName(
-              countryObject.name.nativeName
-            ),
-            population: countryObject.population.toLocaleString(),
-            region: countryObject.region,
-            subRegion: countryObject.subregion,
-            capital: countryObject.capital[0],
-            topLevelDomain: countryObject.tld[0],
-            currencies: getAllKeys(countryObject.currencies),
-            languages: getAllKeyValues(countryObject.languages),
-            borders: countryObject.borders,
-          });
+          setCountryData(parseCountry(countryObject));
         });
     }
   }, [country]);
@@ -67,11 +56,15 @@ const Details: NextPage = () => {
       </button>
 
       <div className="flex flex-col lg:flex-row gap-12 justify-center">
-        <div className="">
-          <img src={countryData.flagImage} className="max-h-[400px]" />
+        <div className="h-full w-full max-w-full lg:max-w-[500px]">
+          <img
+            src={countryData.flagImage}
+            alt={`${countryData.countryName} flag`}
+            className={""}
+          />
         </div>
 
-        <div className="">
+        <div className="country">
           <h1 className="my-5 font-extrabold text-2xl">
             {countryData.countryName}
           </h1>
