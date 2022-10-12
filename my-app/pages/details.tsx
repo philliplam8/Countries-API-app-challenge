@@ -2,38 +2,26 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { DarkModeContext } from "../DarkModeContext";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { Country } from "../types/types";
+import { getCommonCountryNativeName } from "../services/countries.service";
+import { getAllKeys, getAllKeyValues } from "../utils/helpers";
 import BorderGroup from "../components/BorderGroup";
 import Field from "../components/Field";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { Country } from "../types/types";
 
 const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
 
-function getAllKeys(myObj: object): string {
-  let keys: string[] = Object.keys(myObj);
-  return keys.join(", ");
-}
-
-function getAllKeyValues(myObj: object): string {
-  let values: string[] = Object.values(myObj);
-  return values.join(", ");
-}
-
-function getCommonCountryNativeName(nativeNameObject: object): string {
-  const length: number = Object.keys(nativeNameObject).length;
-  const commonNativeName: string =
-    Object.values(nativeNameObject)[length - 1].common;
-  return commonNativeName;
-}
-
 const Details: NextPage = () => {
-  const [darkMode, setDarkMode] = useContext(DarkModeContext);
-  const [isLoading, setLoading] = useState<boolean>(false);
-
-  const [countryData, setCountryData] = useState<Country>({}); // potential for lazy
-
   const route = useRouter();
   const country = route.query["country"];
+
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [countryData, setCountryData] = useState<Country>({}); // potential for lazy
+
+  const backButtonHandler = () => {
+    route.push(`/`);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -64,10 +52,6 @@ const Details: NextPage = () => {
     }
   }, [country]);
 
-  const backHandler = () => {
-    route.push(`/`);
-  };
-
   return (
     <div
       className={`py-10 ${darkMode ? "text-white" : "text-very-dark-blue-lm"}`}
@@ -76,7 +60,7 @@ const Details: NextPage = () => {
         className={`h-[40px] w-[140px] mb-20 bg:[white] flex flex-row justify-center items-center gap-2 rounded-lg shadow-lg  ${
           darkMode ? "bg-dark-blue" : "bg-white"
         }`}
-        onClick={backHandler}
+        onClick={backButtonHandler}
       >
         <KeyboardBackspaceIcon />
         Back
