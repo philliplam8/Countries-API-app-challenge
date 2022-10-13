@@ -14,7 +14,7 @@ export default function Nav() {
   return (
     <nav
       className={`sticky top-0 z-10 w-full py-8 lg:px-20 flex justify-between items-center shadow-md ${
-        darkMode ? "text-white bg-dark-blue" : "text-very-dark-blue-lm bg-white"
+        darkMode ? "bg-dark-blue" : "bg-white"
       }`}
     >
       <Link href={"/"}>

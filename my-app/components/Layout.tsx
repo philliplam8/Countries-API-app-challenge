@@ -6,9 +6,15 @@ export default function Layout({ children }: any) {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
   return (
-    <div className={darkMode ? "bg-very-dark-blue-bg" : "bg-very-light-gray"}>
+    <div
+      className={
+        darkMode
+          ? "text-white bg-very-dark-blue-bg"
+          : "text-very-dark-blue-lm bg-very-light-gray"
+      }
+    >
       <Nav />
-      <main className="h-full lg:px-20 px-4">{children}</main>
+      <main className={`h-full lg:px-20 px-4`}>{children}</main>
     </div>
   );
 }

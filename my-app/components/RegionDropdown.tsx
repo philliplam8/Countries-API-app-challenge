@@ -11,8 +11,8 @@ export default function Dropdown() {
       className={`h-[60px] w-[200px] px-7 flex align-items shadow-md rounded-lg cursor-pointer
         ${
           darkMode
-            ? "text-white bg-dark-blue"
-            : "text-very-dark-blue-lm bg-white"
+            ? "bg-dark-blue"
+            : "bg-white"
         }`}
     >
       <select
