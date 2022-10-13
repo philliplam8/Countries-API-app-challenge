@@ -6,6 +6,7 @@ import Head from "next/head";
 import Input from "../components/Input";
 import Dropdown from "../components/RegionDropdown";
 import CardGroup from "../components/CardGroup";
+import EmptyResults from "../components/EmptyResults";
 
 const ALL_COUNTRIES_API = "https://restcountries.com/v3.1/all";
 
@@ -50,6 +51,8 @@ const Home: NextPage = () => {
         </div>
 
         <CardGroup />
+        {keyword !== "" && countries.length === 0 && <EmptyResults />}
+        
       </div>
     </div>
   );
