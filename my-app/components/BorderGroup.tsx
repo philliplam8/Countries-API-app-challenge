@@ -13,19 +13,15 @@ export default function BorderGroup(props: { borders: string[] | undefined }) {
   console.log(bordersCodeString);
 
   useEffect(() => {
-    let newBorders: string[] = [];
-
     if (bordersCodeString) {
       fetch(`${COUNTRY_CODE_API}${bordersCodeString}`)
         .then((res) => res.json())
-        .then((data) => {
-          setBorders(parseBorders(data));
-        });
+        .then((data) => setBorders(parseBorders(data)));
     }
   }, [bordersCodeString]);
 
   return (
-    <div className="flex lg:flex-row flex-col gap-4">
+    <div className="flex flex-wrap gap-4">
       <h2 className="my-4 font-semibold text-lg">Border Countries:</h2>
       <div className="flex flex-wrap gap-2 items-center">
         {borders &&
