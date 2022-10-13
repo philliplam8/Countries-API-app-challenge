@@ -18,7 +18,7 @@ export default function Nav() {
       }`}
     >
       <Link href={"/"}>
-        <p className="mx-5 font-extrabold text-md md:text-lg lg:text-2xl cursor-pointer">
+        <p className="mx-5 lg:mx-0 font-extrabold text-md md:text-lg lg:text-2xl cursor-pointer">
           Where in the world?
         </p>
       </Link>
