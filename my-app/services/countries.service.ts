@@ -72,6 +72,7 @@ export const initialCountry = {
   flagImage: "",
   countryName: "",
   nativeName: "",
+  mapsLink: "",
   population: "",
   region: "",
   subRegion: "",
@@ -95,6 +96,7 @@ export function parseCountry(country: any) {
       "name",
       getNativeCountryName(country.name.nativeName)
     ),
+    mapsLink: formatProperty("maps", country.maps.googleMaps),
     population: formatProperty(
       "population",
       country.population.toLocaleString()

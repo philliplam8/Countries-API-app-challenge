@@ -2,16 +2,11 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { DarkModeContext } from "../DarkModeContext";
-import {
-  getNativeCountryName,
-  getCurrencies,
-  parseCountry,
-  initialCountry,
-} from "../services/countries.service";
-import { getKeysFromObject, formatKeyValuesFromObject } from "../utils/helpers";
+import { parseCountry, initialCountry } from "../services/countries.service";
 import BorderGroup from "../components/BorderGroup";
 import Field from "../components/Field";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Country } from "../types/types";
 
 const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
@@ -66,9 +61,14 @@ const Details: NextPage = () => {
         </div>
 
         <div className="country">
-          <h1 className="my-5 font-extrabold text-2xl">
-            {countryData.countryName}
-          </h1>
+          <div className="flex flex-row gap-2 items-center">
+            <h1 className="my-5 font-extrabold text-2xl">
+              {countryData.countryName}
+            </h1>
+            <a target="_blank" href={countryData.mapsLink}>
+              <LocationOnIcon />
+            </a>
+          </div>
 
           <div
             id="country-details"

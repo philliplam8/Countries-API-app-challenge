@@ -7,6 +7,7 @@ export interface Country {
   flagImage: string;
   countryName: string;
   nativeName?: string;
+  mapsLink?: string;
   population: string;
   region: string;
   subRegion?: string;
