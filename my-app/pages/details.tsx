@@ -121,8 +121,6 @@ const Details: NextPage = () => {
             </div>
           </div>
 
-          {/* Border Country Buttons here... */}
-          {/* TODO */}
           <BorderGroup borders={countryData.borders} />
         </div>
       </div>

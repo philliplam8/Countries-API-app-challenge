@@ -8,8 +8,7 @@ export default function Border(props: CountryName): JSX.Element {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
 
   const borderClickHandler = () => {
-    console.log("Clicked on border country");
-    // route.push(`/details?country=${props.countryName}`);
+    route.push(`/details?country=${props.countryName}`);
   };
 
   return (

@@ -113,3 +113,20 @@ export function parseCountry(country: any) {
 
   return parsedCountry;
 }
+
+/**
+ * Get the bordering countries that geographically neighbour the current country on the Details page
+ * @param countriesArray All data relevant to the countries that border the country on the Details page
+ * @returns The name of the countries that border the current country on the Details page
+ */
+export function parseBorders(countriesArray: string | any[]): string[] {
+  let parsedBorders: string[] = [];
+
+  for (let i = 0; i < countriesArray.length; i++) {
+    const border = countriesArray[i];
+    const borderName = border.name.common;
+    parsedBorders[i] = borderName;
+  }
+
+  return parsedBorders;
+}
