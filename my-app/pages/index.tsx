@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { CountriesContext } from "../CountriesContext";
 import { parseCountries } from "../services/countries.service";
 import Head from "next/head";
@@ -10,10 +10,11 @@ import CardGroup from "../components/CardGroup";
 const ALL_COUNTRIES_API = "https://restcountries.com/v3.1/all";
 
 const Home: NextPage = () => {
-  const [isLoading, setLoading] = useState(false);
-  const { countriesValue, keywordValue } = useContext(CountriesContext);
+  const { countriesValue, keywordValue, loadingValue } =
+    useContext(CountriesContext);
   const [countries, setCountries] = countriesValue;
   const [keyword, setKeyword] = keywordValue;
+  const [isLoading, setLoading] = loadingValue;
 
   useEffect(() => {
     if (keyword === "") {
@@ -28,7 +29,7 @@ const Home: NextPage = () => {
     }
   }, [keyword]);
 
-  if (isLoading) return <p>Loading...</p>;
+  // if (isLoading) return <p>Loading...</p>;
   if (!countries) return <p>No profile data</p>;
 
   return (
