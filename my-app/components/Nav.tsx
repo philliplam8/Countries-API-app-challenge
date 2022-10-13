@@ -22,15 +22,14 @@ export default function Nav() {
           Where in the world?
         </p>
       </Link>
-      <ul className="mx-5">
-        <button
-          onClick={darkModeHandler}
-          className="w-full flex flex-row items-center gap-2 cursor-pointer"
-        >
-          {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
-          <span className="font-bold text-sm">Dark Mode</span>
-        </button>
-      </ul>
+
+      <button
+        onClick={darkModeHandler}
+        className="mx-5 lg:mx-0 flex flex-row items-center gap-2 cursor-pointer"
+      >
+        {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
+        <span className="font-bold text-sm">Dark Mode</span>
+      </button>
     </nav>
   );
 }
