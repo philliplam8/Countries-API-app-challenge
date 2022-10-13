@@ -18,10 +18,11 @@ export default function Card(props: Country) {
       ${darkMode ? "bg-dark-blue" : "bg-white"}`}
       onClick={cardClickHandler}
     >
-      <div className="card-image h-[200px] shadow-sm">
+      <div className="card-image h-[200px] shadow-sm rounded-t-lg">
         <img
           src={props.flagImage}
           className="h-full w-[300px] object-fit rounded-t-lg"
+          alt={`${props.countryName} flag`}
         />
       </div>
 
