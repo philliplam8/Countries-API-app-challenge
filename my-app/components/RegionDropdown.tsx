@@ -82,12 +82,8 @@ export function TailwindDropdown() {
                     href={link.href}
                     className={`block px-4 py-2 text-sm ${
                       darkMode
-                        ? active
-                          ? "bg-blue-gray"
-                          : ""
-                        : active
-                        ? "bg-light-gray"
-                        : ""
+                        ? active && "bg-blue-gray"
+                        : active && "bg-light-gray"
                     }`}
                   >
                     {link.label}
