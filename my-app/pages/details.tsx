@@ -5,9 +5,11 @@ import { DarkModeContext } from "../DarkModeContext";
 import { parseCountry, initialCountry } from "../services/countries.service";
 import BorderGroup from "../components/BorderGroup";
 import Field from "../components/Field";
+import SkeletionRow from "../components/SkeletonRow";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Skeleton from "@mui/material/Skeleton";
+
 import { Country } from "../types/types";
 
 const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
@@ -55,7 +57,12 @@ const Details: NextPage = () => {
       <div className="flex flex-col lg:flex-row gap-12 justify-center">
         <div className="h-full w-full max-w-full lg:max-w-[500px]">
           {isLoading ? (
-            <Skeleton animation="wave" variant="rounded" width="100%">
+            <Skeleton
+              animation="wave"
+              variant="rounded"
+              width="100%"
+              className={`max-w-[500px] ${darkMode ? "bg-dark-blue" : ""}`}
+            >
               <div style={{ paddingTop: "100%" }} />
             </Skeleton>
           ) : (
@@ -69,7 +76,7 @@ const Details: NextPage = () => {
 
         <div className="country">
           {isLoading ? (
-            <Skeleton animation="wave" sx={{ width: "60%" }} />
+            <SkeletionRow width="100%" />
           ) : (
             <div className="flex flex-row gap-2 items-center">
               <h1 className="my-5 font-extrabold text-2xl">
@@ -84,10 +91,10 @@ const Details: NextPage = () => {
           {isLoading ? (
             <div>
               <div className="flex flex-row gap-2">
-                <Skeleton animation="wave" width="30%" />
-                <Skeleton animation="wave" width="70%" />
+                <SkeletionRow width="30%" />
+                <SkeletionRow width="70%" />
               </div>
-              <Skeleton animation="wave" width="100%" />
+              <SkeletionRow width="100%" />
             </div>
           ) : (
             <div
@@ -148,8 +155,8 @@ const Details: NextPage = () => {
 
           {isLoading ? (
             <div className="flex flex-row gap-2">
-              <Skeleton animation="wave" width="300px" />
-              <Skeleton animation="wave" width="100%" />
+              <SkeletionRow width="300px" />
+              <SkeletionRow width="100%" />
             </div>
           ) : (
             <BorderGroup borders={countryData.borders} />
