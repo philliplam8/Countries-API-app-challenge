@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CountriesContext } from "../CountriesContext";
+import { CountriesContext } from "../context/CountriesContext";
 import Card from "./Card";
 import { Country } from "../types/types";
 import SkeletonCard from "./SkeletonCard";

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 import Link from "next/link";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import DarkModeIcon from "@mui/icons-material/DarkMode";

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 import { parseCountry, initialCountry } from "../services/countries.service";
 import BorderGroup from "../components/BorderGroup";
 import Field from "../components/Field";

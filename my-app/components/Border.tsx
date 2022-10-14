@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 import { CountryName } from "../types/types";
 
 export default function Border(props: CountryName): JSX.Element {

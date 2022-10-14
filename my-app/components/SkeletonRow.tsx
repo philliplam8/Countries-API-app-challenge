@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 import Skeleton from "@mui/material/Skeleton";
 
 export default function SkeletionRow(props: { width: string }) {

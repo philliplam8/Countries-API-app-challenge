@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import { CountriesContext } from "../CountriesContext";
-import { DarkModeContext } from "../DarkModeContext";
+import { CountriesContext } from "../context/CountriesContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 import { parseCountries } from "../services/countries.service";
 import SearchIcon from "@mui/icons-material/Search";
 

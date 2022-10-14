@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useContext, useEffect } from "react";
-import { CountriesContext } from "../CountriesContext";
+import { CountriesContext } from "../context/CountriesContext";
 import { parseCountries } from "../services/countries.service";
 import Head from "next/head";
 import Input from "../components/Input";

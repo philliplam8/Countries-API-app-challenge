@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { CountriesContext } from "../CountriesContext";
+import { CountriesContext } from "../context/CountriesContext";
 import { Country } from "../types/types";
 import { formatKeyValuesFromObject } from "../utils/helpers";
 

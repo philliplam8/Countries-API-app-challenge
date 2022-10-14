@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 import Nav from "./Nav";
 
 export default function Layout({ children }: any) {

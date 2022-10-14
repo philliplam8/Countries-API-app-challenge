@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 import { useRouter } from "next/router";
 import Field from "../components/Field";
 import { Country } from "../types/types";

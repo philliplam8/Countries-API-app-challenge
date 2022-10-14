@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../DarkModeContext";
+import { DarkModeContext } from "../context/DarkModeContext";
 // ------------------------------------------
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";

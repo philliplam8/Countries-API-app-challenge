@@ -20,7 +20,7 @@
     "**/*.ts",
     "**/*.tsx",
     "DarkModeContext.js",
-    "CountriesContext.js"
+    "context/CountriesContext.js"
   ],
   "exclude": ["node_modules"]
 }
