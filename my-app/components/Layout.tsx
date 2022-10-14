@@ -4,10 +4,9 @@ import Nav from "./Nav";
 
 export default function Layout({ children }: any) {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
-
   return (
     <div
-      className={`h-screen ${
+      className={`h-full ${
         darkMode
           ? "text-white bg-very-dark-blue-bg"
           : "text-very-dark-blue-lm bg-very-light-gray"
