@@ -4,7 +4,7 @@ import { CountriesContext } from "../CountriesContext";
 import { parseCountries } from "../services/countries.service";
 import Head from "next/head";
 import Input from "../components/Input";
-import Dropdown from "../components/RegionDropdown";
+import { TailwindDropdown } from "../components/RegionDropdown";
 import CardGroup from "../components/CardGroup";
 import EmptyResults from "../components/EmptyResults";
 
@@ -30,7 +30,6 @@ const Home: NextPage = () => {
     }
   }, [keyword]);
 
-  // if (isLoading) return <p>Loading...</p>;
   if (!countries) return <p>No profile data</p>;
 
   return (
@@ -45,14 +44,13 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="py-6">
-        <div className="flex flex-wrap gap-5 justify-between">
+        <div className="flex flex-col sm:flex-row gap-5 justify-between">
           <Input />
-          <Dropdown />
+          <TailwindDropdown />
         </div>
 
         <CardGroup />
         {keyword !== "" && countries.length === 0 && <EmptyResults />}
-        
       </div>
     </div>
   );

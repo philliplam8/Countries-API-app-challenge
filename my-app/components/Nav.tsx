@@ -27,7 +27,11 @@ export default function Nav() {
         onClick={darkModeHandler}
         className="mx-5 lg:mx-0 flex flex-row items-center gap-2 cursor-pointer"
       >
-        {darkMode ? <DarkModeIcon /> : <DarkModeOutlinedIcon />}
+        {darkMode ? (
+          <DarkModeIcon aria-hidden="true" />
+        ) : (
+          <DarkModeOutlinedIcon aria-hidden="true" />
+        )}
         <span className="font-bold text-sm">Dark Mode</span>
       </button>
     </nav>

@@ -36,11 +36,11 @@ export default function Input() {
 
   return (
     <div
-      className={`h-[60px] w-[350px] px-7 flex gap-2 align-items items-center shadow-md rounded-lg ${
+      className={`h-[60px] w-full sm:w-[350px] px-7 flex gap-2 align-items items-center shadow-md rounded-lg ${
         darkMode ? "bg-dark-blue" : "bg-white"
       }`}
     >
-      <SearchIcon className="text-gray-400" />
+      <SearchIcon className="text-gray-400" aria-hidden="true" />
       <input
         type="text"
         id="search"
