@@ -34,12 +34,14 @@ export const CountriesProvider = (props) => {
   const [countries, setCountries] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [region, setRegion] = useState("");
 
   return (
     <CountriesContext.Provider value={{
       countriesValue: [countries, setCountries],
       keywordValue: [keyword, setKeyword],
-      loadingValue: [isLoading, setIsLoading]
+      loadingValue: [isLoading, setIsLoading],
+      regionValue: [region, setRegion]
     }}>
       {props.children}
     </CountriesContext.Provider>

@@ -1,21 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DarkModeContext } from "../context/DarkModeContext";
+import { CountriesContext } from "../context/CountriesContext";
 // ------------------------------------------
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import CheckIcon from "@mui/icons-material/Check";
 
-const links = [
-  { href: "#", label: "Africa" },
-  { href: "#", label: "Asia" },
-  { href: "#", label: "America" },
-  { href: "#", label: "Europe" },
-  { href: "#", label: "Oceania" },
+const items = [
+  { label: "Africa" },
+  { label: "Asia" },
+  { label: "America" },
+  { label: "Europe" },
+  { label: "Oceania" },
 ];
 
 export default function Dropdown() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
-
   return (
     <div
       className={`h-[60px] w-[200px] px-7 flex align-items shadow-md rounded-lg cursor-pointer
@@ -38,12 +39,14 @@ export default function Dropdown() {
   );
 }
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export function TailwindDropdown() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const { regionValue } = useContext(CountriesContext);
+  const [region, setRegion] = regionValue;
+
+  const updateRegion = (newRegion: string) => {
+    newRegion === region ? setRegion("") : setRegion(newRegion);
+  };
 
   return (
     <Menu
@@ -54,9 +57,10 @@ export function TailwindDropdown() {
     >
       <Menu.Button
         className="h-[60px] w-full inline-flex justify-center items-center px-8 py-4 text-md font-medium shadow-md rounded-lg 
-      focus:outline-none focus:rounded-lg focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+        focus:outline-none focus:rounded-lg focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
       >
-        Filter by Region
+        {region ? `${region} Region` : "Filter by Region"}
+
         <ChevronDownIcon className="-mr-1 ml-2 h-6 w-5" aria-hidden="true" />
       </Menu.Button>
 
@@ -74,20 +78,27 @@ export function TailwindDropdown() {
             darkMode ? "bg-dark-blue" : "bg-white"
           }`}
         >
-          <div className="py-1">
-            {links.map((link) => (
-              <Menu.Item as={Fragment} key={link.label}>
+          <div className="py-2">
+            {items.map((item) => (
+              <Menu.Item as={Fragment} key={item.label}>
                 {({ active }) => (
-                  <a
-                    href={link.href}
-                    className={`block px-4 py-2 text-sm ${
+                  <button
+                    className={`flex items-center justify-start gap-2 w-full px-4 py-3 text-sm 
+                    ${
                       darkMode
                         ? active && "bg-blue-gray"
                         : active && "bg-light-gray"
-                    }`}
+                    }
+                    ${region === item.label && "font-semibold"}`}
+                    onClick={() => {
+                      updateRegion(item.label);
+                    }}
                   >
-                    {link.label}
-                  </a>
+                    {item.label}
+                    {region === item.label && (
+                      <CheckIcon className="text-sm" />
+                    )}
+                  </button>
                 )}
               </Menu.Item>
             ))}
