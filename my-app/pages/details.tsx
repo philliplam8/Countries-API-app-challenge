@@ -42,7 +42,7 @@ const Details: NextPage = () => {
 
   return (
     <div
-      className={`max-w-[1024px] m-auto py-10 ${darkMode ? "text-white" : "text-very-dark-blue-lm"}`}
+      className={`max-w-[640px] lg:max-w-[1024px] m-auto py-10 ${darkMode ? "text-white" : "text-very-dark-blue-lm"}`}
     >
       <button
         className={`h-[40px] w-[140px] mb-20 bg:[white] flex flex-row justify-center items-center gap-2 rounded-lg shadow-lg  ${
@@ -55,7 +55,7 @@ const Details: NextPage = () => {
       </button>
 
       <div className="flex flex-col lg:flex-row gap-12 justify-center">
-        <div className="h-full w-full max-w-full">
+        <div className="h-full w-full">
           {isLoading ? (
             <Skeleton
               animation="wave"
@@ -69,7 +69,7 @@ const Details: NextPage = () => {
             <img
               src={countryData.flagImage}
               alt={`${countryData.countryName} flag`}
-              className={""}
+              className={"w-full"}
             />
           )}
         </div>
