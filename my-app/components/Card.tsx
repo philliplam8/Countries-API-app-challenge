@@ -8,15 +8,26 @@ export default function Card(props: Country) {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const route = useRouter();
 
-  const cardClickHandler = () => {
-    route.push(`/details?country=${props.countryName}`);
+  const goToCountry = () => route.push(`/details?country=${props.countryName}`);
+
+  const handleCardClick = () => {
+    goToCountry();
+  };
+
+  const handleKeyDown = (e: { key: string }) => {
+    if (e.key === "Enter") {
+      goToCountry();
+    }
   };
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       className={`h-[390px] w-[300px] rounded-lg shadow-md cursor-pointer
       ${darkMode ? "bg-dark-blue" : "bg-white"}`}
-      onClick={cardClickHandler}
+      onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
     >
       <div className="card-image h-[200px] shadow-sm rounded-t-lg">
         <img
@@ -27,7 +38,9 @@ export default function Card(props: Country) {
       </div>
 
       <div className="card-details mx-7 my-6">
-        <h2 className="font-extrabold my-4 text-lg">{props.countryName}</h2>
+        <h2 className="font-extrabold my-4 text-lg text-left">
+          {props.countryName}
+        </h2>
 
         <div className="card-country-details flex flex-col gap-1 text-sm">
           <Field fieldName="Population:" fieldValue={props.population} />
