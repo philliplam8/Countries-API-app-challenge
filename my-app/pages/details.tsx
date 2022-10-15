@@ -42,7 +42,7 @@ const Details: NextPage = () => {
 
   return (
     <div
-      className={`py-10 ${darkMode ? "text-white" : "text-very-dark-blue-lm"}`}
+      className={`max-w-[1024px] m-auto py-10 ${darkMode ? "text-white" : "text-very-dark-blue-lm"}`}
     >
       <button
         className={`h-[40px] w-[140px] mb-20 bg:[white] flex flex-row justify-center items-center gap-2 rounded-lg shadow-lg  ${
@@ -55,7 +55,7 @@ const Details: NextPage = () => {
       </button>
 
       <div className="flex flex-col lg:flex-row gap-12 justify-center">
-        <div className="h-full w-full max-w-full lg:max-w-[500px]">
+        <div className="h-full w-full max-w-full">
           {isLoading ? (
             <Skeleton
               animation="wave"
@@ -74,12 +74,12 @@ const Details: NextPage = () => {
           )}
         </div>
 
-        <div className="country">
+        <div className="country w-full">
           {isLoading ? (
             <SkeletionRow width="100%" />
           ) : (
             <div className="flex flex-row gap-2 items-center">
-              <h1 className="my-5 font-extrabold text-2xl">
+              <h1 className="my-5 font-extrabold text-3xl">
                 {countryData.countryName}
               </h1>
               <a target="_blank" href={countryData.mapsLink}>
