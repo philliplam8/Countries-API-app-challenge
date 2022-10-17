@@ -44,8 +44,7 @@ export function parseCountries(data: [any]) {
       capital: country.capital,
     };
   }
-
-  console.log({ parseCountries });
+  
   return parsedCountries;
 }
 
