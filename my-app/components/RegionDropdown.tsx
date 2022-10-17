@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import { DarkModeContext } from "../context/DarkModeContext";
-import { CountriesContext } from "../context/CountriesContext";
-// ------------------------------------------
-import { Fragment } from "react";
+import { useContext, useEffect, Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import CheckIcon from "@mui/icons-material/Check";
+import { DarkModeContext } from "../context/DarkModeContext";
+import { CountriesContext } from "../context/CountriesContext";
+import { parseCountries } from "../services/countries.service";
 
-const items = [
+const COUNTRY_REGION_API = "https://restcountries.com/v3.1/region/";
+const dropdownItems = [
   { label: "Africa" },
   { label: "Asia" },
   { label: "America" },
@@ -15,38 +15,34 @@ const items = [
   { label: "Oceania" },
 ];
 
-export default function Dropdown() {
-  const [darkMode, setDarkMode] = useContext(DarkModeContext);
-  return (
-    <div
-      className={`h-[60px] w-[200px] px-7 flex align-items shadow-md rounded-lg cursor-pointer
-        ${darkMode ? "bg-dark-blue" : "bg-white"}`}
-    >
-      <select
-        name="filter"
-        id="filter-region"
-        className={`w-full cursor-pointer
-        ${darkMode ? "bg-dark-blue" : "bg-white"}`}
-      >
-        <option value="">Filter by Region</option>
-        <option value="">Africa</option>
-        <option value="">America</option>
-        <option value="">Asia</option>
-        <option value="">Europe</option>
-        <option value="">Oceania</option>
-      </select>
-    </div>
-  );
-}
-
 export function TailwindDropdown() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
-  const { regionValue } = useContext(CountriesContext);
+  const { countriesValue, keywordValue, regionValue, loadingValue } =
+    useContext(CountriesContext);
+  const [countries, setCountries] = countriesValue;
+  const [keyword, setKeyword] = keywordValue;
   const [region, setRegion] = regionValue;
+  const [isLoading, setLoading] = loadingValue;
 
-  const updateRegion = (newRegion: string) => {
+  const handleRegionChange = (newRegion: string) => {
     newRegion === region ? setRegion("") : setRegion(newRegion);
+    // Clear keyword input
+    setKeyword("");
   };
+
+  useEffect(() => {
+    if (region) {
+      setLoading(true);
+      fetch(`${COUNTRY_REGION_API}${region}`)
+        .then((res) => res.json())
+        .then((data) => {
+          let parsedCountries = parseCountries(data);
+          setCountries(parsedCountries);
+          setLoading(false);
+        })
+        .catch((error) => console.error(error));
+    }
+  }, [region]);
 
   return (
     <Menu
@@ -79,7 +75,7 @@ export function TailwindDropdown() {
           }`}
         >
           <div className="py-2">
-            {items.map((item) => (
+            {dropdownItems.map((item) => (
               <Menu.Item as={Fragment} key={item.label}>
                 {({ active }) => (
                   <button
@@ -91,13 +87,11 @@ export function TailwindDropdown() {
                     }
                     ${region === item.label && "font-semibold"}`}
                     onClick={() => {
-                      updateRegion(item.label);
+                      handleRegionChange(item.label);
                     }}
                   >
                     {item.label}
-                    {region === item.label && (
-                      <CheckIcon className="text-sm" />
-                    )}
+                    {region === item.label && <CheckIcon className="text-sm" />}
                   </button>
                 )}
               </Menu.Item>
