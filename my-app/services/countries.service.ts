@@ -1,10 +1,4 @@
-import { useContext, useState } from "react";
-import { CountriesContext } from "../context/CountriesContext";
-import { Country } from "../types/types";
 import { formatKeyValuesFromObject } from "../utils/helpers";
-
-const ALL_COUNTRIES_API = "https://restcountries.com/v3.1/all";
-const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
 
 export function getNativeCountryName(nativeNameObject: object): string {
   const length: number = Object.keys(nativeNameObject).length;
@@ -47,23 +41,6 @@ export function parseCountries(data: [any]) {
   
   return parsedCountries;
 }
-
-// function getCountriesArrayFromCountriesAPI(api: string): void {
-//   fetch(api)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       let parsedCountries = parseCountries(data);
-//       setCountries(parsedCountries);
-//     });
-// }
-
-// export function getAllCountries(): void {
-//   getCountriesArrayFromCountriesAPI(ALL_COUNTRIES_API);
-// }
-
-// export function getCountriesFromSearch(keyword: string): void {
-//   getCountriesArrayFromCountriesAPI(`${COUNTRY_NAME_API}${keyword}`);
-// }
 
 //TODO fix param type
 

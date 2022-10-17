@@ -22,7 +22,7 @@ const Details: NextPage = () => {
 
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [countryData, setCountryData] = useState<Country>(initialCountry); // potential for skeleton loading
+  const [countryData, setCountryData] = useState<Country>(initialCountry);
 
   const backButtonHandler = () => {
     route.push(`/`);
