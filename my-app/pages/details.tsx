@@ -9,10 +9,12 @@ import SkeletionRow from "../components/SkeletonRow";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Skeleton from "@mui/material/Skeleton";
-
 import { Country } from "../types/types";
 
-const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
+function getCountryFullNameApi(name: string | string[]): string {
+  const COUNTRY_FULLNAME_API = `https://restcountries.com/v3.1/name/${name}?fullText=true`;
+  return COUNTRY_FULLNAME_API;
+}
 
 const Details: NextPage = () => {
   const route = useRouter();
@@ -30,7 +32,8 @@ const Details: NextPage = () => {
     setLoading(true);
 
     if (country) {
-      fetch(`${COUNTRY_NAME_API}${country}`)
+      const COUNTRY_FULLNAME_API = getCountryFullNameApi(country);
+      fetch(COUNTRY_FULLNAME_API)
         .then((res) => res.json())
         .then((data) => {
           setLoading(false);
@@ -42,7 +45,9 @@ const Details: NextPage = () => {
 
   return (
     <div
-      className={`max-w-[640px] lg:max-w-[1024px] m-auto py-10 ${darkMode ? "text-white" : "text-very-dark-blue-lm"}`}
+      className={`max-w-[640px] lg:max-w-[1024px] m-auto py-10 ${
+        darkMode ? "text-white" : "text-very-dark-blue-lm"
+      }`}
     >
       <button
         className={`h-[40px] w-[140px] mb-20 bg:[white] flex flex-row justify-center items-center gap-2 rounded-lg shadow-lg  ${
@@ -55,13 +60,13 @@ const Details: NextPage = () => {
       </button>
 
       <div className="flex flex-col lg:flex-row gap-12 justify-center">
-        <div className="h-full w-full">
+        <div className="h-full lg:w-full">
           {isLoading ? (
             <Skeleton
               animation="wave"
               variant="rounded"
               width="100%"
-              className={`max-w-[500px] ${darkMode ? "bg-dark-blue" : ""}`}
+              className={`w-full ${darkMode ? "bg-dark-blue" : ""}`}
             >
               <div style={{ paddingTop: "100%" }} />
             </Skeleton>
