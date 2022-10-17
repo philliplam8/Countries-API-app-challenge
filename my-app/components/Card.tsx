@@ -29,10 +29,10 @@ export default function Card(props: Country) {
       onClick={handleCardClick}
       onKeyDown={handleKeyDown}
     >
-      <div className="card-image h-[200px] shadow-sm rounded-t-lg">
+      <div className="flex justify-center h-[200px] shadow-sm rounded-t-lg">
         <img
           src={props.flagImage}
-          className="h-full w-[300px] object-fit rounded-t-lg"
+          className="object-contain h-full rounded-t-lg"
           alt={`${props.countryName} flag`}
         />
       </div>
