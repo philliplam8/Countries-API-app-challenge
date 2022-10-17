@@ -11,14 +11,15 @@ import EmptyResults from "../components/EmptyResults";
 const ALL_COUNTRIES_API = "https://restcountries.com/v3.1/all";
 
 const Home: NextPage = () => {
-  const { countriesValue, keywordValue, loadingValue } =
+  const { countriesValue, keywordValue, regionValue, loadingValue } =
     useContext(CountriesContext);
   const [countries, setCountries] = countriesValue;
   const [keyword, setKeyword] = keywordValue;
+  const [region, setRegion] = regionValue;
   const [isLoading, setLoading] = loadingValue;
 
   useEffect(() => {
-    if (keyword === "") {
+    if (keyword === "" && region === "") {
       setLoading(true);
       fetch(ALL_COUNTRIES_API)
         .then((res) => res.json())
@@ -28,7 +29,7 @@ const Home: NextPage = () => {
           setLoading(false);
         });
     }
-  }, [keyword]);
+  }, [keyword, region]);
 
   if (!countries) return <p>No profile data</p>;
 

@@ -8,15 +8,18 @@ const COUNTRY_NAME_API = "https://restcountries.com/v3.1/name/";
 
 export default function Input() {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
-  const { countriesValue, keywordValue, loadingValue } =
+  const { countriesValue, keywordValue, regionValue, loadingValue } =
     useContext(CountriesContext);
   const [countries, setCountries] = countriesValue;
   const [keyword, setKeyword] = keywordValue;
+  const [region, setRegion] = regionValue;
   const [isLoading, setLoading] = loadingValue;
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newKeyword: string = e.target.value;
     setKeyword(newKeyword);
+    // Clear Region
+    setRegion("");
   };
 
   // TODO
