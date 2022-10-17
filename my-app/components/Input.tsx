@@ -49,6 +49,7 @@ export default function Input() {
         className={`w-full focus:outline-none ${
           darkMode ? "bg-dark-blue" : "bg-white"
         }`}
+        value={keyword}
         onChange={inputHandler}
       />
     </div>
