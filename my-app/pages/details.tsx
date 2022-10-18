@@ -50,7 +50,7 @@ const Details: NextPage = () => {
   }, [country]);
 
   if (error) {
-    return <Error statusCode={404} />;
+    route.push("/404");
   }
 
   return (
