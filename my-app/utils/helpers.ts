@@ -5,6 +5,10 @@ export function getKeysFromObject(myObj: object): string {
 }
 
 export function formatKeyValuesFromObject(myObj: object): string {
-  let values: string[] = Object.values(myObj);
-  return values.join(", ");
+  if (myObj) {
+    let values: string[] = Object.values(myObj);
+    return values.join(", ");
+  } else {
+    return "";
+  }
 }

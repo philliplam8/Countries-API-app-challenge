@@ -1,10 +1,14 @@
 import { formatKeyValuesFromObject } from "../utils/helpers";
 
 export function getNativeCountryName(nativeNameObject: object): string {
-  const length: number = Object.keys(nativeNameObject).length;
-  const commonNativeName: string =
-    Object.values(nativeNameObject)[length - 1].common;
-  return commonNativeName;
+  if (nativeNameObject) {
+    const length: number = Object.keys(nativeNameObject).length;
+    const commonNativeName: string =
+      Object.values(nativeNameObject)[length - 1].common;
+    return commonNativeName;
+  } else {
+    return "";
+  }
 }
 
 export function getCurrencies(currenciesObject: object): string {
