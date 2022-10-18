@@ -8,13 +8,17 @@ export function getNativeCountryName(nativeNameObject: object): string {
 }
 
 export function getCurrencies(currenciesObject: object): string {
-  // Parse currency name and the symbol
-  let currenciesArray: string[] = Object.values(currenciesObject).map(
-    (currency) => `${currency.name} (${currency.symbol})`
-  );
-  // Format currencies into a string
-  let stringifiedCurrencies: string = currenciesArray.join(", ");
-  return stringifiedCurrencies;
+  if (currenciesObject) {
+    // Parse currency name and the symbol
+    let currenciesArray: string[] = Object.values(currenciesObject).map(
+      (currency) => `${currency.name} (${currency.symbol})`
+    );
+    // Format currencies into a string
+    let stringifiedCurrencies: string = currenciesArray.join(", ");
+    return stringifiedCurrencies;
+  } else {
+    return "";
+  }
 }
 
 // TODO Typescript
@@ -38,7 +42,7 @@ export function parseCountries(data: [any]) {
       capital: country.capital,
     };
   }
-  
+
   return parsedCountries;
 }
 
