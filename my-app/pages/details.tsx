@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Error from "next/error";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { DarkModeContext } from "../context/DarkModeContext";
@@ -23,6 +24,7 @@ const Details: NextPage = () => {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [countryData, setCountryData] = useState<Country>(initialCountry);
+  const [error, setError] = useState(false);
 
   const backButtonHandler = () => {
     route.push(`/`);
@@ -39,9 +41,17 @@ const Details: NextPage = () => {
           setLoading(false);
           const countryObject = data[0];
           setCountryData(parseCountry(countryObject));
+        })
+        .catch(() => {
+          console.log("Country not found");
+          setError(true);
         });
     }
   }, [country]);
+
+  if (error) {
+    return <Error statusCode={404} />;
+  }
 
   return (
     <div
