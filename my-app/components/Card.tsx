@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Field from "../components/Field";
 import { Country } from "../types/types";
 
+const MESSAGE_NO_VALUE = "None";
+
 export default function Card(props: Country) {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const route = useRouter();
@@ -45,7 +47,10 @@ export default function Card(props: Country) {
         <div className="card-country-details flex flex-col gap-1 text-sm">
           <Field fieldName="Population:" fieldValue={props.population} />
           <Field fieldName="Region:" fieldValue={props.region} />
-          <Field fieldName="Capital:" fieldValue={props.capital} />
+          <Field
+            fieldName="Capital:"
+            fieldValue={props.capital ? props.capital : MESSAGE_NO_VALUE}
+          />
         </div>
       </div>
     </div>

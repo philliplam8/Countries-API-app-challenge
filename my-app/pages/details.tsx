@@ -12,6 +12,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Skeleton from "@mui/material/Skeleton";
 import { Country } from "../types/types";
 
+const MESSAGE_NO_VALUE = "None";
+
 function getCountryFullNameApi(name: string | string[]): string {
   const COUNTRY_FULLNAME_API = `https://restcountries.com/v3.1/name/${name}?fullText=true`;
   return COUNTRY_FULLNAME_API;
@@ -76,7 +78,9 @@ const Details: NextPage = () => {
               animation="wave"
               variant="rounded"
               width="100%"
-              className={`w-full ${darkMode ? "bg-dark-blue" : ""}`}
+              className={`w-full ${
+                darkMode ? "bg-dark-blue" : MESSAGE_NO_VALUE
+              }`}
             >
               <div style={{ paddingTop: "100%" }} />
             </Skeleton>
@@ -120,28 +124,38 @@ const Details: NextPage = () => {
                 <Field
                   fieldName="Native Name:"
                   fieldValue={
-                    countryData.nativeName ? countryData.nativeName : ""
+                    countryData.nativeName
+                      ? countryData.nativeName
+                      : MESSAGE_NO_VALUE
                   }
                 />
                 <Field
                   fieldName="Population:"
                   fieldValue={
-                    countryData.population ? countryData.population : ""
+                    countryData.population
+                      ? countryData.population
+                      : MESSAGE_NO_VALUE
                   }
                 />
                 <Field
                   fieldName="Region:"
-                  fieldValue={countryData.region ? countryData.region : ""}
+                  fieldValue={
+                    countryData.region ? countryData.region : MESSAGE_NO_VALUE
+                  }
                 />
                 <Field
                   fieldName="Sub Region:"
                   fieldValue={
-                    countryData.subRegion ? countryData.subRegion : ""
+                    countryData.subRegion
+                      ? countryData.subRegion
+                      : MESSAGE_NO_VALUE
                   }
                 />
                 <Field
                   fieldName="Capital:"
-                  fieldValue={countryData.capital ? countryData.capital : ""}
+                  fieldValue={
+                    countryData.capital ? countryData.capital : MESSAGE_NO_VALUE
+                  }
                 />
               </div>
 
@@ -149,19 +163,25 @@ const Details: NextPage = () => {
                 <Field
                   fieldName="Top Level Domain:"
                   fieldValue={
-                    countryData.topLevelDomain ? countryData.topLevelDomain : ""
+                    countryData.topLevelDomain
+                      ? countryData.topLevelDomain
+                      : MESSAGE_NO_VALUE
                   }
                 />
                 <Field
                   fieldName="Currencies:"
                   fieldValue={
-                    countryData.currencies ? countryData.currencies : ""
+                    countryData.currencies
+                      ? countryData.currencies
+                      : MESSAGE_NO_VALUE
                   }
                 />
                 <Field
                   fieldName="Languages:"
                   fieldValue={
-                    countryData.languages ? countryData.languages : ""
+                    countryData.languages
+                      ? countryData.languages
+                      : MESSAGE_NO_VALUE
                   }
                 />
               </div>
