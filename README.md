@@ -6,7 +6,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -40,16 +40,14 @@ I've added some minor additions that weren't included in the initial design:
 
 ### Screenshots
 
-Home Page  
-<img src='./design/implemented-design/desktop-home-light.png' alt="demo screenshot desktop home page light mode" width='500'>
-<img src='./design/implemented-design/desktop-home-dark.png' alt="demo screenshot desktop home page dark mode" width='500'>
-<img src='./design/implemented-design/desktop-home-empty-dark.png' alt="demo screenshot desktop empty home page" width='500'>
+#### Home Page  
+<img src='./design/implemented-design/desktop-home-light.png' alt="demo screenshot desktop home page light mode" width='400'><img src='./design/implemented-design/desktop-home-dark.png' alt="demo screenshot desktop home page dark mode" width='400'><img src='./design/implemented-design/desktop-home-empty-dark.png' alt="demo screenshot desktop empty home page" width='400'>
 
-Details Page  
-<img src='./design/implemented-design/desktop-detail-dark.png' alt="demo screenshot desktop details page dark mode" width='500'>
+#### Details Page  
+<img src='./design/implemented-design/desktop-detail-dark.png' alt="demo screenshot desktop details page dark mode" width='400'>  
 <img src='./design/implemented-design/mobile-detail-light.png' alt="demo screenshot mobile details page light mode" width='320'>
 
-404 Page  
+#### 404 Page  
 <img src='./design/implemented-design/mobile-404-light.png' alt="demo screenshot 404 page" width='320'>
 
 ### Links
