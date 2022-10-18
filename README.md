@@ -51,7 +51,7 @@ I've added some minor additions that weren't included in the initial design:
 
 #### Mobile
 
-<img src='./design/implemented-design/mobile-detail-light.png' alt="demo screenshot mobile details page light mode" width='320'><img src='./design/implemented-design/mobile-404-light.png' alt="demo screenshot 404 page" width='320'>
+<img src='./design/implemented-design/mobile-detail-dark.png' alt="demo screenshot mobile details page dark mode" width='320'><img src='./design/implemented-design/mobile-404-light.png' alt="demo screenshot 404 page" width='320'>
 
 ## My process
 
