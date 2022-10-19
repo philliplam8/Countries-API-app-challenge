@@ -1,10 +1,19 @@
+/**
+ * Get all key names from an object
+ * @param myObj
+ * @returns A stringified version of all key names from myObj separated by commas
+ */
 export function getKeysFromObject(myObj: object): string {
-  //TODO update function name
   let keys: string[] = Object.keys(myObj);
   return keys.join(", ");
 }
 
-export function formatKeyValuesFromObject(myObj: object): string {
+/**
+ * Get all key values from an object
+ * @param myObj
+ * @returns A stringified version of all key values from myObj separated by commas
+ */
+export function getKeyValuesFromObject(myObj: object): string {
   if (myObj) {
     let values: string[] = Object.values(myObj);
     return values.join(", ");

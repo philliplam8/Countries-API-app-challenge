@@ -1,5 +1,5 @@
 import { CountryDetails } from "../types/types";
-import { formatKeyValuesFromObject } from "../utils/helpers";
+import { getKeyValuesFromObject } from "../utils/helpers";
 
 export const EMPTY_VALUE = "None";
 
@@ -136,7 +136,7 @@ export function parseCountry(country: {
 
   const getLanguages = () => {
     return country.languages
-      ? formatKeyValuesFromObject(country.languages)
+      ? getKeyValuesFromObject(country.languages)
       : EMPTY_VALUE;
   };
 

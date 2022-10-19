@@ -22,7 +22,6 @@ export default function Input() {
     setRegion("");
   };
 
-  // TODO
   useEffect(() => {
     if (keyword) {
       setLoading(true);
