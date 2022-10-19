@@ -1,18 +1,20 @@
 import type { NextPage } from "next";
-import Error from "next/error";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { DarkModeContext } from "../context/DarkModeContext";
-import { parseCountry, initialCountry } from "../services/countries.service";
+import {
+  parseCountry,
+  initialCountry,
+  EMPTY_VALUE,
+} from "../services/countries.service";
 import BorderGroup from "../components/BorderGroup";
 import Field from "../components/Field";
 import SkeletionRow from "../components/SkeletonRow";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Skeleton from "@mui/material/Skeleton";
-import { Country } from "../types/types";
-
-const MESSAGE_NO_VALUE = "None";
+import { CountryDetails } from "../types/types";
+import EmptyFlag from "../components/EmptyFlag";
 
 function getCountryFullNameApi(name: string | string[]): string {
   const COUNTRY_FULLNAME_API = `https://restcountries.com/v3.1/name/${name}?fullText=true`;
@@ -25,7 +27,8 @@ const Details: NextPage = () => {
 
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [countryData, setCountryData] = useState<Country>(initialCountry);
+  const [countryData, setCountryData] =
+    useState<CountryDetails>(initialCountry);
   const [error, setError] = useState(false);
 
   const backButtonHandler = () => {
@@ -42,7 +45,8 @@ const Details: NextPage = () => {
         .then((data) => {
           setLoading(false);
           const countryObject = data[0];
-          setCountryData(parseCountry(countryObject));
+          const parsedCountry = parseCountry(countryObject);
+          setCountryData(parsedCountry);
         })
         .catch(() => {
           console.log("Country not found");
@@ -78,12 +82,12 @@ const Details: NextPage = () => {
               animation="wave"
               variant="rounded"
               width="100%"
-              className={`w-full ${
-                darkMode ? "bg-dark-blue" : MESSAGE_NO_VALUE
-              }`}
+              className={`w-full ${darkMode ? "bg-dark-blue" : "bg-white"}`}
             >
               <div style={{ paddingTop: "100%" }} />
             </Skeleton>
+          ) : countryData.flagImage === EMPTY_VALUE ? (
+            <EmptyFlag />
           ) : (
             <img
               src={countryData.flagImage}
@@ -123,66 +127,32 @@ const Details: NextPage = () => {
               <div id="country-details-main" className="flex flex-col gap-2">
                 <Field
                   fieldName="Native Name:"
-                  fieldValue={
-                    countryData.nativeName
-                      ? countryData.nativeName
-                      : MESSAGE_NO_VALUE
-                  }
+                  fieldValue={countryData.nativeName}
                 />
                 <Field
                   fieldName="Population:"
-                  fieldValue={
-                    countryData.population
-                      ? countryData.population
-                      : MESSAGE_NO_VALUE
-                  }
+                  fieldValue={countryData.population}
                 />
-                <Field
-                  fieldName="Region:"
-                  fieldValue={
-                    countryData.region ? countryData.region : MESSAGE_NO_VALUE
-                  }
-                />
+                <Field fieldName="Region:" fieldValue={countryData.region} />
                 <Field
                   fieldName="Sub Region:"
-                  fieldValue={
-                    countryData.subRegion
-                      ? countryData.subRegion
-                      : MESSAGE_NO_VALUE
-                  }
+                  fieldValue={countryData.subRegion}
                 />
-                <Field
-                  fieldName="Capital:"
-                  fieldValue={
-                    countryData.capital ? countryData.capital : MESSAGE_NO_VALUE
-                  }
-                />
+                <Field fieldName="Capital:" fieldValue={countryData.capital} />
               </div>
 
               <div id="column2" className="flex flex-col gap-2">
                 <Field
                   fieldName="Top Level Domain:"
-                  fieldValue={
-                    countryData.topLevelDomain
-                      ? countryData.topLevelDomain
-                      : MESSAGE_NO_VALUE
-                  }
+                  fieldValue={countryData.topLevelDomain}
                 />
                 <Field
                   fieldName="Currencies:"
-                  fieldValue={
-                    countryData.currencies
-                      ? countryData.currencies
-                      : MESSAGE_NO_VALUE
-                  }
+                  fieldValue={countryData.currencies}
                 />
                 <Field
                   fieldName="Languages:"
-                  fieldValue={
-                    countryData.languages
-                      ? countryData.languages
-                      : MESSAGE_NO_VALUE
-                  }
+                  fieldValue={countryData.languages}
                 />
               </div>
             </div>

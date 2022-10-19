@@ -1,24 +1,26 @@
+export interface ReadOnlyField {
+  fieldName: string;
+  fieldValue: string;
+}
+
 export interface CountryName {
   countryName: string;
 }
 
-export interface Country {
+export interface CountryCard extends CountryName {
   key?: string;
   flagImage: string;
-  countryName: string;
-  nativeName?: string;
-  mapsLink?: string;
   population: string;
   region: string;
-  subRegion?: string;
   capital: string;
-  topLevelDomain?: string;
-  currencies?: string;
-  languages?: string;
-  borders?: string[];
 }
 
-export interface ReadOnlyField {
-  fieldName: string;
-  fieldValue: string;
+export interface CountryDetails extends CountryCard {
+  nativeName: string;
+  mapsLink: string;
+  subRegion: string;
+  topLevelDomain: string;
+  currencies: string;
+  languages: string;
+  borders: string[];
 }

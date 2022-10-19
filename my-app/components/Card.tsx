@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { DarkModeContext } from "../context/DarkModeContext";
 import { useRouter } from "next/router";
+import { DarkModeContext } from "../context/DarkModeContext";
 import Field from "../components/Field";
-import { Country } from "../types/types";
+import { EMPTY_VALUE } from "../services/countries.service";
+import { CountryCard } from "../types/types";
+import EmptyFlag from "./EmptyFlag";
 
 const MESSAGE_NO_VALUE = "None";
 
-export default function Card(props: Country) {
+export default function Card(props: CountryCard) {
   const [darkMode, setDarkMode] = useContext(DarkModeContext);
   const route = useRouter();
 
@@ -32,11 +34,15 @@ export default function Card(props: Country) {
       onKeyDown={handleKeyDown}
     >
       <div className="flex justify-center h-[200px] shadow-sm rounded-t-lg">
-        <img
-          src={props.flagImage}
-          className="object-contain h-full rounded-t-lg"
-          alt={`${props.countryName} flag`}
-        />
+        {props.flagImage === EMPTY_VALUE ? (
+          <EmptyFlag />
+        ) : (
+          <img
+            src={props.flagImage}
+            className="object-contain h-full rounded-t-lg"
+            alt={`${props.countryName} flag`}
+          />
+        )}
       </div>
 
       <div className="card-details mx-7 my-6">

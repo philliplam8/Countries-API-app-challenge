@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { CountriesContext } from "../context/CountriesContext";
 import Card from "./Card";
-import { Country } from "../types/types";
+import { CountryCard } from "../types/types";
 import SkeletonCard from "./SkeletonCard";
 
-export default function CardGroup(props: any) {
+export default function CardGroup() {
   const { countriesValue, loadingValue } = useContext(CountriesContext);
   const [countries, setCountries] = countriesValue;
   const [isLoading, setIsLoading] = loadingValue;
@@ -21,10 +21,11 @@ export default function CardGroup(props: any) {
           <SkeletonCard />
           <SkeletonCard />
           <SkeletonCard />
+          <SkeletonCard />
         </div>
       ) : (
         <div className="py-5 flex flex-row flex-wrap justify-center align-items gap-10">
-          {countries.map((country: Country) => {
+          {countries.map((country: CountryCard) => {
             return (
               <Card
                 key={country.key}
