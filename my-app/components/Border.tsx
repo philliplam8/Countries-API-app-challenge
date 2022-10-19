@@ -13,7 +13,7 @@ export default function Border(props: CountryName): JSX.Element {
 
   return (
     <button
-      className={`h-[40px] w-[200px] bg:[white] flex flex-row justify-center items-center gap-2 rounded-lg shadow-lg  ${
+      className={`h-[35px] px-7 bg:[white] text-sm flex flex-row justify-center items-center gap-2 rounded-lg shadow-lg  ${
         darkMode ? "bg-dark-blue" : "bg-white"
       }`}
       onClick={borderClickHandler}
