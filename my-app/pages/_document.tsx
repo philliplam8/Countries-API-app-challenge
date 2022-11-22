@@ -4,6 +4,12 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <title>Frontend Mentor Challenge - Country APIs</title>
+        <meta
+          name="description"
+          content="Frontend Mentor Challenge - REST Countries API"
+        />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
