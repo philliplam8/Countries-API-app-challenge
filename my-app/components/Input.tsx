@@ -15,7 +15,7 @@ export default function Input() {
   const [region, setRegion] = regionValue;
   const [isLoading, setLoading] = loadingValue;
 
-  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newKeyword: string = e.target.value;
     setKeyword(newKeyword);
     // Clear Region
